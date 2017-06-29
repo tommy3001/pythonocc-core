@@ -23,31 +23,44 @@ env:
     - secure: "XObUZlAdB3tRpDtd0z0LaxbOnkpiulNloSevDl5g8+Z3bsBk6jX0GTkVKSryxwe2H7v+YE8crShPykBvi/MlbXOy5S2nO/PjDxJFBQDsGFygrpOnjJ2bZ0IWSLeHADwVoiZZC2yHmkcaq+c5h/fFNyepfai42jhNLFR69adXOSk="
 
 addons:
-  apt:
+  sources:
+    - ubuntu-toolchain-r-test
     packages:
-    - gcc-multilib
-    - g++-multilib
-    - lib32z1+
-    - lsb-core
+    - gcc-5
+    - g++-5
+  #apt:
+  #  packages:
+  #  - gcc-multilib
+  #  - g++-multilib
+  #  - lib32z1+
+  #  - lsb-core
 
 matrix:
   include:
     - env: PYTHON="2.7" CONDA_PY=27 ARCH="x86_64"
       os: linux
       dist: trusty
-    - env: PYTHON="2.7" CONDA_PY=27 ARCH="x86_64"
+    - env: >
+        PYTHON="2.7" CONDA_PY=27 ARCH="x86_64"
+        MACOSX_DEPLOYMENT_TARGET=10.9
       os: osx
       osx_image: xcode8.3
     - env: PYTHON="3.5" CONDA_PY=35 ARCH="x86_64"
       os: linux
       dist: trusty
-    - env: PYTHON="3.5" CONDA_PY=35 ARCH="x86_64"
+    - env: >
+        PYTHON="3.5" CONDA_PY=35 ARCH="x86_64"
+        MACOSX_DEPLOYMENT_TARGET=10.9
       os: osx
       osx_image: xcode8.3
-    - env: PYTHON="3.6" CONDA_PY=36 ARCH="x86_64"
+    - env: >
+        PYTHON="3.6" CONDA_PY=36 ARCH="x86_64"
+        MACOSX_DEPLOYMENT_TARGET=10.9
       os: linux
       dist: trusty
-    - env: PYTHON="3.6" CONDA_PY=36 ARCH="x86_64"
+    - env: >
+        PYTHON="3.6" CONDA_PY=36 ARCH="x86_64"
+        MACOSX_DEPLOYMENT_TARGET=10.9
       os: osx
       osx_image: xcode8.3
 # Use miniconda to install binary versions of numpy etc. from continuum
