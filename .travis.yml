@@ -36,14 +36,27 @@ matrix:
       os: linux
     - env: PYTHON="2.7" CONDA_PY=27 ARCH="x86_64"
       os: osx
+      osx_image: xcode8.3
     - env: PYTHON="3.5" CONDA_PY=35 ARCH="x86_64"
       os: linux
     - env: PYTHON="3.5" CONDA_PY=35 ARCH="x86_64"
       os: osx
+      osx_image: xcode8.3
     - env: PYTHON="3.6" CONDA_PY=36 ARCH="x86_64"
       os: linux
     - env: PYTHON="3.6" CONDA_PY=36 ARCH="x86_64"
       os: osx
+      osx_image: xcode8.3
+  allow_failures:
+    - env: PYTHON="2.7" CONDA_PY=27 ARCH="x86_64"
+      os: osx
+      osx_image: xcode8.3
+    - env: PYTHON="3.5" CONDA_PY=35 ARCH="x86_64"
+      os: osx
+      osx_image: xcode8.3
+    - env: PYTHON="3.6" CONDA_PY=36 ARCH="x86_64"
+      os: osx
+      osx_image: xcode8.3
 # Use miniconda to install binary versions of numpy etc. from continuum
 # analytic's repository. Follows an approach described by Dan Blanchard:
 # https://gist.github.com/dan-blanchard/7045057
@@ -85,10 +98,8 @@ before_install:
 script:
   - conda build ci/conda --no-remove-work-dir
 
-# automative upload to anaconda cloud only
-# if the build was triggered by a cron
-# that was only nightly builds are uploaded
-# in case of a relase, replace the "nightly" label with "main"
+# automatic upload to anaconda cloud only if the build was
+# triggered by a cron
 after_success:
   - python ci/move-conda-package.py
   - if [ "$TRAVIS_EVENT_TYPE" == "cron" ]; then
