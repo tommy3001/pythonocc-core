@@ -23,7 +23,7 @@ requirements:
   build:
     - python
     - oce ==0.18.1
-    - cmake ==3.8.0
+    - cmake ==3.9.0
     - ninja ==1.7.2
     - swig ==3.0.11
     - freetype ==2.7
