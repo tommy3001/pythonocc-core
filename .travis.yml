@@ -4,6 +4,9 @@ language: cpp
 
 cache:
  apt: true
+ directories: 
+  - $HOME/virtualenv
+  - $HOME/miniconda
 
 # the secure below is the binstar token
 # to genrate this secure
